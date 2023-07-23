@@ -25,7 +25,6 @@ func main() {
 
 	var largest_calories = 0
 	var current_calories = 0
-
 	for scanner.Scan() {
 		s := scanner.Text()
 		if len(s) == 0 {
