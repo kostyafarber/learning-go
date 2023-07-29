@@ -6,6 +6,14 @@ import (
 	"os"
 )
 
+func popCount(b byte) int {
+	count := 0
+	for ; b != 0; count++ {
+		b &= b - 1
+	}
+	return count
+}
+
 func main() {
 	args := os.Args
 	if len(args)-1 > 2 || len(args) == 1 {
@@ -18,15 +26,9 @@ func main() {
 	fmt.Printf("%x\n%x\n", s1, s2)
 
 	diffBits := 0
-	s3 := make([]byte, len(s1))
 	for i := range s1 {
-		s3[i] = s1[i] ^ s2[i]
-	}
-
-	for _, b := range s3 {
-		if (b & 1) == 1 {
-			diffBits++
-		}
+		mask := s1[i] ^ s2[i]
+		diffBits += popCount(mask)
 	}
 	fmt.Println(diffBits)
 }
