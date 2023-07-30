@@ -15,14 +15,20 @@ var (
 )
 
 type shaPrinter struct{}
+type shas string
 
-func (s shaPrinter) sha512Printer(length string, bytesArg []byte) {
+func (s shaPrinter) sha512Printer(length shas, bytesArg []byte) {
+	const (
+		t84 shas = "384"
+		f12      = "512"
+	)
+
 	switch {
-	case length == "384":
+	case length == t84:
 		hash := sha512.Sum384(bytesArg)
 		fmt.Printf("Creating SHA384 hash %x\n", hash)
 
-	case length == "512":
+	case length == f12:
 		hash := sha512.Sum512(bytesArg)
 		fmt.Printf("Creating SHA512 hash %x\n", hash)
 	}
