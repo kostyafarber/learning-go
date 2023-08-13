@@ -16,8 +16,13 @@ func main() {
 
 	m := make(map[string]int)
 	traverse(doc, m)
+	prettyPrint(m)
+}
 
-	fmt.Println(m)
+func prettyPrint(m map[string]int) {
+	for key, element := range m {
+		fmt.Printf("The number of [%s] is: %d\n", key, element)
+	}
 }
 
 func traverse(node *html.Node, m map[string]int) {
