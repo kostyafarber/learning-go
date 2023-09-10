@@ -122,3 +122,22 @@ func (s *IntSet) SymmetricDifference(t *IntSet) {
 		}
 	}
 }
+
+// ex4
+func (s *IntSet) Elems() []int {
+	slice := make([]int, s.Len())
+	slice_loop := 0
+	for i, word := range s.words {
+		if word == 0 {
+			continue
+		}
+		for j := 0; j < 64; j++ {
+			if word&(1<<uint(j)) != 0 {
+				num := 64*i + j
+				slice[slice_loop] = num
+				slice_loop++
+			}
+		}
+	}
+	return slice
+}
