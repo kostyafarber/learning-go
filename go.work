@@ -4,4 +4,5 @@ use (
 	./adventofcode
 	./gopl.io
 	./gopl.io.solutions
+	./lru-cache
 )

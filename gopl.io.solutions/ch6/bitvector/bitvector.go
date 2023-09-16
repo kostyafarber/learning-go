@@ -104,7 +104,8 @@ func (s *IntSet) IntersectWith(t *IntSet) {
 func (s *IntSet) DifferenceWith(t *IntSet) {
 	for i, tword := range t.words {
 		if i < len(s.words) {
-			// difference of two sets can be expressed as set 1 - (intersection of set 1 and 2)
+			// difference of two sets can be expressed as:
+			// set 1 - (intersection of set 1 and 2)
 			intersection := s.words[i] & tword
 			s.words[i] ^= intersection
 		} else {
