@@ -38,10 +38,19 @@ func (ll *DoublyLinkedList) deleteNodeFromArray(i int) {
 }
 
 func (ll *DoublyLinkedList) InsertHead(val rune) error {
+	if ll.Head == nil {
+		node := CreateNode(val, nil, nil)
+		ll.Nodes = append(ll.Nodes, node)
+		ll.Head = ll.Nodes[0]
+		ll.Tail = ll.Nodes[0]
+		return nil
+	}
+
 	newHead := CreateNode(val, ll.Head, nil)
 	ll.Head.Prev = newHead
-	ll.Head = newHead
 	ll.Nodes = append([]*Node{newHead}, ll.Nodes...)
+	ll.Head = ll.Nodes[0]
+	ll.Tail = ll.Nodes[ll.Len()-1]
 	return nil
 }
 
@@ -61,6 +70,10 @@ func (ll *DoublyLinkedList) DeleteNode(deleteNodeVal rune) error {
 		}
 	}
 	return nil
+}
+
+func (ll *DoublyLinkedList) Len() int {
+	return len(ll.Nodes)
 }
 
 func CreateNode(val rune, next *Node, prev *Node) *Node {
